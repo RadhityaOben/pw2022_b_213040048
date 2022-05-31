@@ -20,6 +20,59 @@
         return $rows;
     }
 
+    // Fungsi Pasien
+    
+    function tambahPasien($data) {
+        $connect = connect();
+        
+        $nama = htmlspecialchars($data["name"]);
+        $email = htmlspecialchars($data["email"]);
+        $telephone = htmlspecialchars($data["telephone"]);
+        $password = htmlspecialchars($data["password"]);
+        
+        
+        $gambar = upload();
+        if(!$gambar) {
+            $gambar = 'nophoto.png';
+        }
+        
+        $query = "INSERT INTO pasien VALUES (NULL, '$nama', '$email', SHA1('$password'), '$telephone', '$gambar')";
+        
+        mysqli_query($connect, $query) or die(mysqli_error($connect));
+        
+        return mysqli_affected_rows($connect);
+    }
+    
+    function hapusPasien($id) {
+        $connect = connect();
+        
+        mysqli_query($connect, "DELETE FROM konsultasi WHERE id_pasien = $id") or die(mysqli_error($connect));
+        mysqli_query($connect, "DELETE FROM pasien WHERE id_pasien = $id") or die(mysqli_error($connect));
+        
+        return mysqli_affected_rows($connect);
+    }
+    
+    function editPasien($id, $edit) {
+        $connect = connect();
+        
+        $nama = htmlspecialchars($edit['name']);
+        $email = htmlspecialchars($edit['email']);
+        $telepon = htmlspecialchars($edit['telephone']);
+        $gambarLama = htmlspecialchars($edit['gambarLama']);
+        
+        if($_FILES['image']['error'] === 4) {
+            $gambar = $gambarLama;
+        } else {
+            $gambar = upload();
+        }
+        
+        $query = "UPDATE pasien SET nama_pasien = '$nama', email_pasien = '$email', telepon_pasien = '$telepon', foto_pasien = '$gambar' WHERE id_pasien = $id";
+        
+        mysqli_query($connect, $query) OR DIE(mysqli_error($connect));
+        
+        return mysqli_affected_rows(($connect));
+    }
+    
     function hitungPasien() {
         $connect = connect();
 
@@ -29,55 +82,144 @@
         $data = mysqli_fetch_assoc($result);
         return $data['Total'];
     }
+    
+    
+    function cariPasien($keyword) {
+        $query = "SELECT * FROM pasien 
+                    WHERE
+                    nama_pasien like '%$keyword%' OR
+                    email_pasien like '%$keyword%' OR
+                    telepon_pasien like '%$keyword%'
+                ";
+        return query($query);
+    }
 
-    function tambahPasien($data) {
+    
+
+    // Fungsi Dokter
+
+    function tambahDokter($data) {
         $connect = connect();
-
+        
         $nama = htmlspecialchars($data["name"]);
         $email = htmlspecialchars($data["email"]);
-        $telephone = htmlspecialchars($data["phone"]);
-
+        $telephone = htmlspecialchars($data["telephone"]);
+        $password = htmlspecialchars($data["password"]);
+        
+        
         $gambar = upload();
         if(!$gambar) {
             $gambar = 'nophoto.png';
         }
-
-        $query = "INSERT INTO pasien VALUES (NULL, '$nama', '$email', '$telephone', '$gambar')";
-
+        
+        $query = "INSERT INTO dokter VALUES (NULL, '$nama', '$email', SHA1('$password'), '$telephone', '$gambar')";
+        
         mysqli_query($connect, $query) or die(mysqli_error($connect));
-
+        
+        return mysqli_affected_rows($connect);
+    }
+    
+    function hapusDokter($id) {
+        $connect = connect();
+        
+        mysqli_query($connect, "DELETE FROM konsultasi WHERE id_dokter = $id") or die(mysqli_error($connect));
+        mysqli_query($connect, "DELETE FROM dokter WHERE id_dokter = $id") or die(mysqli_error($connect));
+        
         return mysqli_affected_rows($connect);
     }
 
-    function hapusPasien($id) {
+    function editDokter($id, $edit) {
         $connect = connect();
-
-        mysqli_query($connect, "DELETE FROM konsultasi WHERE id_pasien = $id") or die(mysqli_error($connect));
-        mysqli_query($connect, "DELETE FROM pasien WHERE id_pasien = $id") or die(mysqli_error($connect));
-
-        return mysqli_affected_rows($connect);
-    }
-
-    function editPasien($id, $edit) {
-        $connect = connect();
-
+        
         $nama = htmlspecialchars($edit['name']);
         $email = htmlspecialchars($edit['email']);
         $telepon = htmlspecialchars($edit['telephone']);
         $gambarLama = htmlspecialchars($edit['gambarLama']);
-
+        
         if($_FILES['image']['error'] === 4) {
             $gambar = $gambarLama;
         } else {
             $gambar = upload();
         }
-
-        $query = "UPDATE pasien SET nama_pasien = '$nama', email_pasien = '$email', telepon_pasien = '$telepon', foto_pasien = '$gambar' WHERE id_pasien = $id";
-
+        
+        $query = "UPDATE dokter SET nama_dokter = '$nama', email_dokter = '$email', telepon_dokter = '$telepon', foto_dokter = '$gambar' WHERE id_dokter = $id";
+        
         mysqli_query($connect, $query) OR DIE(mysqli_error($connect));
-
+        
         return mysqli_affected_rows(($connect));
     }
+
+    function cariDokter($keyword) {
+        $query = "SELECT * FROM dokter 
+                    WHERE
+                    nama_dokter like '%$keyword%' OR
+                    email_dokter like '%$keyword%' OR
+                    telepon_dokter like '%$keyword%'
+                ";
+        return query($query);
+    }
+
+    function hitungDokter() {
+        $connect = connect();
+
+        $query = "SELECT COUNT(id_dokter) as Total FROM dokter";
+
+        $result = mysqli_query($connect, $query);
+        $data = mysqli_fetch_assoc($result);
+        return $data['Total'];
+    }
+    
+
+    
+    // Fungsi Admin
+
+    function tambahAdmin($data) {
+        $connect = connect();
+        
+        $username = htmlspecialchars($data["username"]);
+        $password = htmlspecialchars($data["password"]);
+        $id = query("SELECT id_admin FROM admin ORDER BY id_admin DESC")[0]['id_admin'] + 1;
+        
+        
+        $query = "INSERT INTO admin VALUES (NULL, 'admin$id', '$username', SHA1('$password'))";
+        
+        mysqli_query($connect, $query) or die(mysqli_error($connect));
+        
+        return mysqli_affected_rows($connect);
+    }
+
+    function hapusAdmin($id) {
+        $connect = connect();
+        
+        mysqli_query($connect, "DELETE FROM admin WHERE id_admin = $id") or die(mysqli_error($connect));
+        
+        return mysqli_affected_rows($connect);
+    }
+    
+    function editAdmin($id, $edit) {
+        $connect = connect();
+        
+        $username = htmlspecialchars($edit['username']);
+        $password = htmlspecialchars($edit['password']);
+        
+        $query = "UPDATE admin SET username = '$username', password = SHA1('$password') WHERE id_admin = $id";
+        
+        mysqli_query($connect, $query) OR DIE(mysqli_error($connect));
+        
+        return mysqli_affected_rows(($connect));
+    }
+
+    function cariAdmin($keyword) {
+        $query = "SELECT * FROM admin 
+                    WHERE
+                    username like '%$keyword%' OR
+                    kode_admin like '%$keyword%'
+                ";
+        return query($query);
+    }
+
+
+    // Extra
 
     function upload() {
         $nama_file = $_FILES['image']['name'];
@@ -110,12 +252,24 @@
         return $namaBaru;
     }
 
-    function cariPasien($keyword) {
-        $query = "SELECT * FROM pasien 
-                    WHERE
-                    nama_pasien like '%$keyword%' OR
-                    email_pasien like '%$keyword%' OR
-                    telepon_pasien like '%$keyword%'
-                ";
+    function cariHistory($keyword) {
+        if($_SESSION['status'] === "USER") {
+            $query = "SELECT * FROM konsultasi 
+                WHERE
+                keluhan like '%$keyword%' OR
+                tgl_konsultasi like '%$keyword%' OR
+                media_konsultasi like '%$keyword%' AND
+                id_pasien = $_SESSION[id]
+            ";
+        }
+        else if($_SESSION['status'] === "DOCTOR") {
+            $query = "SELECT * FROM konsultasi
+                WHERE
+                keluhan like '%$keyword%' OR
+                tgl_konsultasi like '%$keyword%' OR
+                media_konsultasi like '%$keyword%' AND
+                id_dokter = $_SESSION[id]
+            ";
+        }
         return query($query);
     }

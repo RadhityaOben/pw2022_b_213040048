@@ -5,32 +5,32 @@
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto" href="../">Home</a></li>
-          <li><a class="nav-link scrollto" href="../#services">Services</a></li>
-          <li><a class="nav-link scrollto" href="../#gallery">Gallery</a></li>
-          <li><a class="nav-link scrollto" href="../#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="#">Home</a></li>
+          <li><a class="nav-link scrollto" href="#services">Services</a></li>
+          <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
 
           <?php if($_SESSION['status'] === "DOCTOR" || $_SESSION['status'] === "ADMIN" || $_SESSION['status'] === "SUPER ADMIN") {?>
-          <li><a class="nav-link scrollto" href="patientlist.php">Patient List</a></li>
+          <li><a class="nav-link scrollto" href="php/patientlist.php">Patient List</a></li>
           <?php } ?>
             
             
           <?php if($_SESSION['status'] === "ADMIN" || $_SESSION['status'] === "SUPER ADMIN") {?>
-          <li><a class="nav-link scrollto" href="doctorlist.php">Doctor List</a></li>
+          <li><a class="nav-link scrollto" href="php/doctorlist.php">Doctor List</a></li>
           <?php } ?>
 
           <?php if($_SESSION['status'] === "SUPER ADMIN") {?>
-          <li><a class="nav-link scrollto" href=" adminlist.php">Admin List</a></li>
+          <li><a class="nav-link scrollto" href="php/adminlist.php">Admin List</a></li>
           <?php } ?>
           
           <?php if(isset($_SESSION['login'])) {?>
             <li class="dropdown"><a href="#"><span>Hello <b><?= strtoupper($_SESSION['username']); ?></b></span></a>
             <ul>
-              <li><a href="editprofile.php">Edit your profile</a></li>
+              <li><a href="user/editprofile.php">Edit your profile</a></li>
               <?php if($_SESSION['status'] === "USER" || $_SESSION['status'] === "DOCTOR") { ?>
-                <li><a href="history.php">History</a></li>
+                <li><a href="php/history.php">History</a></li>
               <?php } ?>
-              <li><a href="../signout.php">Logout</a></li>
+              <li><a href="signout.php">Logout</a></li>
             </ul>
             </li>
           <?php }?>

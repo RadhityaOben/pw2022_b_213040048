@@ -825,7 +825,7 @@ section {
 # Patient
 --------------------------------------------------------------*/
 
-.patient {
+.patient, .admin, .doctor {
   padding-top: 150px;
 }
 .patient .icon-box {
@@ -1538,7 +1538,7 @@ section {
 /*--------------------------------------------------------------
 # My Own Custom CSS
 --------------------------------------------------------------*/
-.table-patient{
+.table-patient, .table-admin, .table-doctor{
   height: 550px;
   overflow: auto;
 }

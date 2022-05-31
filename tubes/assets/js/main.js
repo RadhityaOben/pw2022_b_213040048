@@ -215,3 +215,24 @@
   });
 
 })()
+
+// AJAX Live Search
+
+var keyword = document.getElementById('keyword');
+var buttonSearch = document.getElementById('button-search');
+var container = document.getElementById('table-ajax');
+
+keyword.addEventListener('keypress', function() {
+  var ajax = new XMLHttpRequest();
+
+  ajax.onreadystatechange = function() {
+    if(ajax.readyState == 4 && ajax.status == 200) {
+      container.innerHTML = ajax.responseText;
+    }
+  }
+
+  ajax.open('GET', '../ajax/data.php?keyword=' + keyword.value, true);
+  ajax.send();
+});
+
+

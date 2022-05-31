@@ -13,7 +13,7 @@
           <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/ -->
           Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
           |
-          Edited by <a href="">Radhitya Putra Ridwan</a>
+          Edited by <a href="#">Radhitya Putra Ridwan</a>
         </div>
       </div>
       <div class="social-links text-center text-md-right pt-3 pt-md-0">
