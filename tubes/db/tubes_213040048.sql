@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2022 at 05:33 PM
+-- Generation Time: Jun 03, 2022 at 05:36 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -63,7 +63,7 @@ CREATE TABLE `dokter` (
 --
 
 INSERT INTO `dokter` (`id_dokter`, `nama_dokter`, `email_dokter`, `password`, `telepon_dokter`, `foto_dokter`) VALUES
-(1, 'Fitri Ramdhani', 'fitri@gmail.com', '5c97265b82864df9e224c3aa3bbe0236c345f534', '089876543219', ''),
+(1, 'Fitri Ramdhani', 'fitri@gmail.com', '90669a986b4b74397ad27114165a1450cc3bd3d0', '089876543219', 'nophoto.png'),
 (2, 'Yusuf al-Wahid', 'yusuf@gmail.com', '2476278303b32e2b26a1948f1cb04d9e5d0bccd7', '1223344342', 'nophoto.png'),
 (3, 'Kallen Vestia', 'kallen@gmail.com', '5e5620d9f2bdb174d4963a80d43fe7fc5e120d70', '088555996848', 'nophoto.png'),
 (4, 'Muhammad Azhar', 'azhar@gmail.com', '681ed2fb9f51b61459c1d8c0548740e09a59490a', '8896456567', 'nophoto.png');
@@ -91,7 +91,13 @@ INSERT INTO `konsultasi` (`id_konsultasi`, `keluhan`, `tgl_konsultasi`, `media_k
 (1, 'Sakit tenggorokan yang tidak berhenti setelah 1 minggu', '2022-05-03', 'online', 3, 1),
 (2, 'Demam panas', '2022-04-15', 'onsite', 2, 4),
 (3, 'Tangan kejang-kejang', '2022-03-01', 'online', 2, 3),
-(4, 'Radang tenggorokan', '2022-01-05', 'onsite', 2, 1);
+(4, 'Radang tenggorokan', '2022-01-05', 'onsite', 2, 1),
+(5, 'Test', '2022-06-04', 'onsite', 1, 1),
+(7, '56456', '2022-06-03', 'onsite', 3, 1),
+(8, 'Sakit kepala', '2022-07-01', 'online', 1, 3),
+(9, 'Sakit Tenggorokan', '2022-06-22', 'onsite', 1, 2),
+(10, 'Radang Tenggorokan', '2022-09-08', 'online', 2, 1),
+(11, 'Cek kesehatan bulanan', '2022-03-10', 'onsite', 24, 4);
 
 -- --------------------------------------------------------
 
@@ -113,7 +119,7 @@ CREATE TABLE `pasien` (
 --
 
 INSERT INTO `pasien` (`id_pasien`, `nama_pasien`, `email_pasien`, `password`, `telepon_pasien`, `foto_pasien`) VALUES
-(1, 'Radhitya', 'radhitya@gmail.com', 'b0a1e96e729eac0969204d3fcbc55ac3f10c9f8d', '081234567890', 'nophoto.png'),
+(1, 'Radhitya', 'radhitya@gmail.com', 'a818e1cb9d1bd24a655bba0b7730a33d4324b53a', '081234567890', 'nophoto.png'),
 (2, 'Jerry', 'jerry@gmail.com', '75926e095b28dd773adde5bade93e4836b1d92fc', '989469946', 'nophoto.png'),
 (3, 'Henry', 'henry@gmail.com', '55b5a0f748d3a82dce10b205ecb0a0d8916c66a1', '458934875345', 'nophoto.png'),
 (4, 'Jason', 'jason@gmail.com', '68c46a606457643eab92053c1c05574abb26f861', '996048600', 'nophoto.png'),
@@ -210,7 +216,7 @@ ALTER TABLE `dokter`
 -- AUTO_INCREMENT for table `konsultasi`
 --
 ALTER TABLE `konsultasi`
-  MODIFY `id_konsultasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_konsultasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `pasien`

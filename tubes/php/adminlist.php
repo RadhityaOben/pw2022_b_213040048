@@ -3,7 +3,7 @@ session_start();
 require '../db/functions.php';
 
 if(!isset($_SESSION['login'])){
-  $_SESSION['status'] = "NOT LOGIN";
+  header("Location: ../index.php");
 }
 
 if($_SESSION['status'] !== "SUPER ADMIN"){
@@ -87,13 +87,13 @@ if(isset($_POST['submit'])) {
         </div>
 
         <div class="row">
-          <div class="table-responsive-sm table-admin">
+          <div class="table-responsive-sm table-admin" id="admin-ajax">
             <table class="table table-striped table-borderless">
               <thead class="table-primary text-secondary">
                 <th class="text-center">No</th>
                 <th>Code</th>
                 <th>Username</th>
-                <th colspan="2">Action</th>
+                <th colspan="2" class="text-center">Action</th>
               </thead>
               <tbody>
                 <?php
@@ -104,7 +104,7 @@ if(isset($_POST['submit'])) {
                     <td class="text-center"><?= $no++; ?></td>
                     <td class="col-3"><?= $p["kode_admin"]; ?></td>
                     <td class="col-3"><?= $p["username"]; ?></td>
-                    <td class="col-3">
+                    <td class="col-3 text-center">
                       <button class="btn btn-warning my-1" data-bs-toggle="modal" data-bs-target="#editModal<?= $p['id_admin']?>">Edit</button>
                       <a href="delete.php?idAdmin=<?= $p["id_admin"]?>" class="btn btn-danger my-1" onclick="return confirm('Are you sure you want to delete it?')">Delete</a>
                     </td>

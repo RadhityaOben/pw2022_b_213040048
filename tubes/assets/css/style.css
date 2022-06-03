@@ -824,8 +824,10 @@ section {
 /*--------------------------------------------------------------
 # Patient
 --------------------------------------------------------------*/
-
-.patient, .admin, .doctor {
+.profile {
+  height: 90%;
+}
+.patient, .admin, .doctor, .history, .profile {
   padding-top: 150px;
 }
 .patient .icon-box {
@@ -964,72 +966,29 @@ section {
 /*--------------------------------------------------------------
 # Appointments
 --------------------------------------------------------------*/
-.appointment .php-email-form {
+.appointment .appointment-form {
   width: 100%;
 }
-.appointment .php-email-form .form-group {
+.appointment .appointment-form .form-group {
   padding-bottom: 8px;
 }
-.appointment .php-email-form .validate {
-  display: none;
-  color: red;
-  margin: 0 0 15px 0;
-  font-weight: 400;
-  font-size: 13px;
-}
-.appointment .php-email-form .error-message {
-  display: none;
-  color: #fff;
-  background: #ed3c0d;
-  text-align: left;
-  padding: 15px;
-  font-weight: 600;
-}
-.appointment .php-email-form .error-message br + br {
-  margin-top: 25px;
-}
-.appointment .php-email-form .sent-message {
-  display: none;
-  color: #fff;
-  background: #18d26e;
-  text-align: center;
-  padding: 15px;
-  font-weight: 600;
-}
-.appointment .php-email-form .loading {
-  display: none;
-  background: #fff;
-  text-align: center;
-  padding: 15px;
-}
-.appointment .php-email-form .loading:before {
-  content: "";
-  display: inline-block;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  margin: 0 10px -6px 0;
-  border: 3px solid #18d26e;
-  border-top-color: #eee;
-  -webkit-animation: animate-loading 1s linear infinite;
-  animation: animate-loading 1s linear infinite;
-}
-.appointment .php-email-form input, .appointment .php-email-form textarea, .appointment .php-email-form select {
+
+.appointment .appointment-form input, .appointment .appointment-form textarea, .appointment .appointment-form select {
   border-radius: 0;
   box-shadow: none;
   font-size: 14px;
   padding: 10px !important;
 }
-.appointment .php-email-form input:focus, .appointment .php-email-form textarea:focus, .appointment .php-email-form select:focus {
+.appointment .appointment-form input:focus, .appointment .appointment-form textarea:focus, .appointment .appointment-form select:focus {
   border-color: #1977cc;
 }
-.appointment .php-email-form input, .appointment .php-email-form select {
+.appointment .appointment-form input, .appointment .appointment-form select {
   height: 44px;
 }
-.appointment .php-email-form textarea {
+.appointment .appointment-form textarea {
   padding: 10px 12px;
 }
-.appointment .php-email-form button[type=submit] {
+.appointment .appointment-form button[type=submit] {
   background: #1977cc;
   border: 0;
   padding: 10px 35px;
@@ -1037,7 +996,7 @@ section {
   transition: 0.4s;
   border-radius: 50px;
 }
-.appointment .php-email-form button[type=submit]:hover {
+.appointment .appointment-form button[type=submit]:hover {
   background: #1c84e3;
 }
 
@@ -1538,11 +1497,17 @@ section {
 /*--------------------------------------------------------------
 # My Own Custom CSS
 --------------------------------------------------------------*/
-.table-patient, .table-admin, .table-doctor{
+.table-patient, .table-admin, .table-doctor, .table-history{
   height: 550px;
   overflow: auto;
 }
 
 .btn-primary{
   background-color: #1977cc !important;
+}
+
+@media print {
+  .inv-print {
+    display: none;
+  }
 }

@@ -26,10 +26,8 @@
           <?php if(isset($_SESSION['login'])) {?>
             <li class="dropdown"><a href="#"><span>Hello <b><?= strtoupper($_SESSION['username']); ?></b></span></a>
             <ul>
-              <li><a href="user/editprofile.php">Edit your profile</a></li>
-              <?php if($_SESSION['status'] === "USER" || $_SESSION['status'] === "DOCTOR") { ?>
-                <li><a href="php/history.php">History</a></li>
-              <?php } ?>
+              <li><a href="php/profile.php">Edit your profile</a></li>
+              <li><a href="php/history.php">Appointment History</a></li>
               <li><a href="signout.php">Logout</a></li>
             </ul>
             </li>

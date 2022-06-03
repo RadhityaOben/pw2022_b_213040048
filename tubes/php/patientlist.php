@@ -3,7 +3,11 @@ session_start();
 require '../db/functions.php';
 
 if(!isset($_SESSION['login'])){
-  $_SESSION['status'] = "NOT LOGIN";
+  header("Location: ../index.php");
+}
+
+if($_SESSION['status'] === "USER"){
+  header('Location: ../');
 }
 
 $patient = query("SELECT * FROM pasien");
@@ -19,7 +23,12 @@ if(isset($_POST['submit'])) {
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   
-  <title>Admin - Patient List</title>
+  <?php if($_SESSION['status'] === "DOCTOR"){?>
+    <title>Doctor - Patient List</title>
+    <?php } else{?>
+    <title>Admin - Patient List</title>
+  <?php } ?>
+  
   <meta content="" name="description">
   <meta content="" name="keywords">
   
@@ -84,14 +93,14 @@ if(isset($_POST['submit'])) {
         </div>
 
         <div class="row">
-          <div class="table-responsive-sm table-patient" id="table-ajax">
+          <div class="table-responsive-sm table-patient" id="patient-ajax">
             <table class="table table-striped table-borderless">
               <thead class="table-primary text-secondary">
                 <th class="text-center">No</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
-                <th colspan="2">Action</th>
+                <th colspan="2" class="text-center">Action</th>
               </thead>
               <tbody>
                 <?php
@@ -104,10 +113,12 @@ if(isset($_POST['submit'])) {
                     <td class="col-3"><?= $p["nama_pasien"]; ?></td>
                     <td class="col-3"><?= $p["email_pasien"]; ?></td>
                     <td><?= $p["telepon_pasien"]; ?></td>
-                    <td class="col-3">
+                    <td class="col-3 text-center">
                       <button class="btn btn-success my-1" data-bs-toggle="modal" data-bs-target="#historyModal<?= $p['id_pasien']?>">More</button>
+                      <?php if($_SESSION['status'] === "ADMIN" || $_SESSION['status'] === "SUPER ADMIN") {?>
                       <button class="btn btn-warning my-1" data-bs-toggle="modal" data-bs-target="#editModal<?= $p['id_pasien']?>">Edit</button>
                       <a href="delete.php?idPatient=<?= $p["id_pasien"]?>" class="btn btn-danger my-1" onclick="return confirm('Are you sure you want to delete it?')">Delete</a>
+                      <?php } ?>
                     </td>
                 </tr>
                 <tr>

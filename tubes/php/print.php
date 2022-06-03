@@ -59,36 +59,26 @@ $no = 1;
   ======================================================== -->
 </head>
 
-<body>
-    <?php include_once '../separate/topbar.php' ?>
-    <?php include_once '../separate/header.php' ?>
-
+<body onload="window.print()">
     <!-- ======= History Section ======= -->
-  <section id="history" class="history">
+  <section id="print" class="print">
       <div class="container">
 
         <div class="section-title">
           <h2>History</h2>
         </div>
 
-        <div class="row">
-          <div class="col">
-            <?php if($_SESSION['status'] === "ADMIN" || $_SESSION['status'] === "SUPER ADMIN") { ?>
-            <a href="print.php" target="_blank"><button class="btn btn-info text-white rounded-pill px-4">Print</button></a>
-            <?php } ?>
-          </div>
-          <div class="col-3">
-            <form action="" method="POST">
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search..." name="keyword" id="keyword">
-                <button class="btn btn-outline-primary" type="submit" id="button-search" name="submit">Submit</button>
-              </div>
-            </form>
-          </div>
+        <div class="row inv-print">
+            <div class="col">
+                <button class="btn btn-info text-white rounded-pill px-4" onclick="window.print()">Print</button>
+            </div>
+            <div class="col-1">
+                <button class="btn btn-danger text-white rounded-pill px-4" onclick="window.close()">Close</button>
+            </div>
         </div>
 
-        <div class="row">
-          <div class="table-responsive-sm table-history" id="history-ajax">
+        <div class="row mt-3">
+          <div class="table-responsive-sm table-print">
             <table class="table table-striped table-borderless">
               <thead class="table-primary text-secondary">
                 <th class="text-center col-1">No</th>
@@ -139,9 +129,6 @@ $no = 1;
     </section>
     <!-- End History Section -->
 
-    <!-- ======= Footer ======= -->
-    <?php include_once '../separate/footer.php' ?>
-    <!-- End Footer -->
 
     <!-- Vendor JS Files -->
   <script src="../assets/vendor/purecounter/purecounter.js"></script>

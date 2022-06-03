@@ -219,7 +219,83 @@
     }
 
 
+    // Password change
+    
+    function passwordSAdmin($id, $edit) {
+        $connect = connect();
+        $password = $edit['password'];
+        $confirm = $edit['confirmPassword'];
+
+        if($password === $confirm) {
+            $query = "UPDATE superadmin SET password = SHA1('$password') WHERE id = $id";
+            
+            mysqli_query($connect, $query) OR DIE(mysqli_error($connect));
+
+            return mysqli_affected_rows($connect);
+        }
+    }
+
+    function passwordAdmin($id, $edit) {
+        $connect = connect();
+        $password = $edit['password'];
+        $confirm = $edit['confirmPassword'];
+
+        if($password === $confirm) {
+            $query = "UPDATE admin SET password = SHA1('$password') WHERE id_admin = $id";
+            
+            mysqli_query($connect, $query) OR DIE(mysqli_error($connect));
+
+            return mysqli_affected_rows($connect);
+        }
+    }
+
+    function passwordDokter($id, $edit) {
+        $connect = connect();
+        $password = $edit['password'];
+        $confirm = $edit['confirmPassword'];
+
+        if($password === $confirm) {
+            $query = "UPDATE dokter SET password = SHA1('$password') WHERE id_dokter = $id";
+            
+            mysqli_query($connect, $query) OR DIE(mysqli_error($connect));
+
+            return mysqli_affected_rows($connect);
+        }
+    }
+
+    function passwordPasien($id, $edit) {
+        $connect = connect();
+        $password = $edit['password'];
+        $confirm = $edit['confirmPassword'];
+
+        if($password === $confirm) {
+            $query = "UPDATE pasien SET password = SHA1('$password') WHERE id_pasien = $id";
+            
+            mysqli_query($connect, $query) OR DIE(mysqli_error($connect));
+
+            return mysqli_affected_rows($connect);
+        }
+    }
+
+
     // Extra
+
+    function tambahKonsultasi($data) {
+        $connect = connect();
+        
+        $tanggal = htmlspecialchars($data["date"]);
+        $media = htmlspecialchars($data["media"]);
+        $idPasien = htmlspecialchars($data["patientid"]);
+        $idDokter = htmlspecialchars($data["doctorid"]);
+        $keluhan = htmlspecialchars($data["complaint"]);
+        
+        
+        $query = "INSERT INTO konsultasi VALUES (NULL, '$keluhan', '$tanggal', '$media', '$idPasien', '$idDokter')";
+        
+        mysqli_query($connect, $query) or die(mysqli_error($connect));
+        
+        return mysqli_affected_rows($connect);
+    }
 
     function upload() {
         $nama_file = $_FILES['image']['name'];
@@ -254,21 +330,37 @@
 
     function cariHistory($keyword) {
         if($_SESSION['status'] === "USER") {
-            $query = "SELECT * FROM konsultasi 
+            $query = "SELECT * FROM konsultasi k
+                    NATURAL JOIN dokter d 
                 WHERE
-                keluhan like '%$keyword%' OR
-                tgl_konsultasi like '%$keyword%' OR
-                media_konsultasi like '%$keyword%' AND
-                id_pasien = $_SESSION[id]
+                (keluhan LIKE '%$keyword%' OR
+                tgl_konsultasi LIKE '%$keyword%' OR
+                media_konsultasi LIKE '%$keyword%' OR
+                d.nama_dokter LIKE '%$keyword%') AND
+                k.id_pasien = $_SESSION[id]
             ";
         }
         else if($_SESSION['status'] === "DOCTOR") {
-            $query = "SELECT * FROM konsultasi
+            $query = "SELECT * FROM konsultasi k
+                    NATURAL JOIN pasien p
                 WHERE
-                keluhan like '%$keyword%' OR
-                tgl_konsultasi like '%$keyword%' OR
-                media_konsultasi like '%$keyword%' AND
-                id_dokter = $_SESSION[id]
+                (keluhan LIKE '%$keyword%' OR
+                tgl_konsultasi LIKE '%$keyword%' OR
+                media_konsultasi LIKE '%$keyword%' OR
+                p.nama_pasien LIKE '%$keyword%') AND
+                k.id_dokter = $_SESSION[id]
+            ";
+        }
+        else {
+            $query = "SELECT * FROM konsultasi k
+                    JOIN pasien p ON p.id_pasien = k.id_pasien
+                    JOIN dokter d ON d.id_dokter = k.id_dokter 
+                WHERE
+                keluhan LIKE '%$keyword%' OR
+                tgl_konsultasi LIKE '%$keyword%' OR
+                media_konsultasi LIKE '%$keyword%' OR
+                p.nama_pasien LIKE '%$keyword%' OR
+                d.nama_dokter LIKE '%$keyword%'
             ";
         }
         return query($query);

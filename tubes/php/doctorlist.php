@@ -3,7 +3,11 @@ session_start();
 require '../db/functions.php';
 
 if(!isset($_SESSION['login'])){
-  $_SESSION['status'] = "NOT LOGIN";
+  header("Location: ../index.php");
+}
+
+if($_SESSION['status'] !== "SUPER ADMIN" && $_SESSION['status'] !== "ADMIN"){
+  header('Location: ../');
 }
 
 $doctor = query("SELECT * FROM dokter");
@@ -84,14 +88,14 @@ if(isset($_POST['submit'])) {
         </div>
 
         <div class="row">
-          <div class="table-responsive-sm table-doctor">
+          <div class="table-responsive-sm table-doctor" id="doctor-ajax">
             <table class="table table-striped table-borderless">
               <thead class="table-primary text-secondary">
                 <th class="text-center">No</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
-                <th colspan="2">Action</th>
+                <th colspan="2" class="text-center">Action</th>
               </thead>
               <tbody>
                 <?php
@@ -104,7 +108,7 @@ if(isset($_POST['submit'])) {
                     <td class="col-3"><?= $p["nama_dokter"]; ?></td>
                     <td class="col-3"><?= $p["email_dokter"]; ?></td>
                     <td><?= $p["telepon_dokter"]; ?></td>
-                    <td class="col-3">
+                    <td class="col-3 text-center">
                       <button class="btn btn-success my-1" data-bs-toggle="modal" data-bs-target="#historyModal<?= $p['id_dokter']?>">More</button>
                       <button class="btn btn-warning my-1" data-bs-toggle="modal" data-bs-target="#editModal<?= $p['id_dokter']?>">Edit</button>
                       <a href="delete.php?idDoctor=<?= $p["id_dokter"]?>" class="btn btn-danger my-1" onclick="return confirm('Are you sure you want to delete it?')">Delete</a>

@@ -220,9 +220,25 @@
 
 var keyword = document.getElementById('keyword');
 var buttonSearch = document.getElementById('button-search');
-var container = document.getElementById('table-ajax');
 
-keyword.addEventListener('keypress', function() {
+if(document.getElementById('patient-ajax')) {
+  var container = document.getElementById('patient-ajax');
+  var fileLocation = "../ajax/datapasien.php?keyword=";
+}
+else if(document.getElementById('doctor-ajax')) {
+  var container = document.getElementById('doctor-ajax');
+  var fileLocation = "../ajax/datadokter.php?keyword=";
+}
+else if(document.getElementById('admin-ajax')) {
+  var container = document.getElementById('admin-ajax');
+  var fileLocation = "../ajax/dataadmin.php?keyword=";
+}
+else if(document.getElementById('history-ajax')) {
+  var container = document.getElementById('history-ajax');
+  var fileLocation = "../ajax/datahistory.php?keyword=";
+}
+
+keyword.addEventListener('keyup', function() {
   var ajax = new XMLHttpRequest();
 
   ajax.onreadystatechange = function() {
@@ -231,7 +247,7 @@ keyword.addEventListener('keypress', function() {
     }
   }
 
-  ajax.open('GET', '../ajax/data.php?keyword=' + keyword.value, true);
+  ajax.open('GET', fileLocation + keyword.value, true);
   ajax.send();
 });
 
