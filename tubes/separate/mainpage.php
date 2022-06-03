@@ -18,52 +18,6 @@
 
   <main id="main">
 
-    <!-- ======= Why Us Section ======= -->
-    <section id="why-us" class="why-us">
-      <div class="container">
-
-        <div class="row">
-          <div class="col-lg-4 d-flex align-items-stretch">
-            <div class="content">
-              <h3>Why Choose Us?</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad corporis.
-              </p>
-            </div>
-          </div>
-          <div class="col-lg-8 d-flex align-items-stretch">
-            <div class="icon-boxes d-flex flex-column justify-content-center">
-              <div class="row">
-                <div class="col-xl-4 d-flex align-items-stretch">
-                  <div class="icon-box mt-4 mt-xl-0">
-                    <i class="bx bx-receipt"></i>
-                    <h4>Corporis voluptates sit</h4>
-                    <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
-                  </div>
-                </div>
-                <div class="col-xl-4 d-flex align-items-stretch">
-                  <div class="icon-box mt-4 mt-xl-0">
-                    <i class="bx bx-cube-alt"></i>
-                    <h4>Ullamco laboris ladore pan</h4>
-                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
-                  </div>
-                </div>
-                <div class="col-xl-4 d-flex align-items-stretch">
-                  <div class="icon-box mt-4 mt-xl-0">
-                    <i class="bx bx-images"></i>
-                    <h4>Labore consequatur</h4>
-                    <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End .content-->
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Why Us Section -->
-
     <!-- ======= Counts Section ======= -->
     <section id="counts" class="counts">
       <div class="container">
@@ -121,7 +75,7 @@
             <div class="icon-box">
               <div class="icon"><i class="fas fa-heartbeat"></i></div>
               <h4><a class="scrollto" href="#services">Medical Check</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+              <p>When you have registeres, you can immediately do medical check after you make an appointment.</p>
             </div>
           </div>
 
@@ -129,7 +83,7 @@
             <div class="icon-box">
               <div class="icon"><i class="fas fa-pills"></i></div>
               <h4><a class="scrollto" href="#services">Medical Prescription</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+              <p>After you do a appointment with one of the doctor, they will give you a prescription for medicine.</p>
             </div>
           </div>
 
@@ -137,7 +91,7 @@
             <div class="icon-box">
               <div class="icon"><i class="fas fa-hospital-user"></i></div>
               <h4><a class="scrollto" href="#services">On-site Appoinement</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+              <p>In this pandemic era, we can do On-site Appointment with doctors.</p>
             </div>
           </div>
 
