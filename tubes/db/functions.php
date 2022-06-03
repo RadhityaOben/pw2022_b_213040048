@@ -323,7 +323,12 @@
 
         $namaBaru = uniqid() . '.' . $extGambar;
 
-        move_uploaded_file($tmpName, '../assets/img/profile/'.$namaBaru);
+        if(!isset($_SESSION['login'])){
+            move_uploaded_file($tmpName, 'assets/img/profile/'.$namaBaru);
+        }
+        else {
+            move_uploaded_file($tmpName, '../assets/img/profile/'.$namaBaru);
+        }
 
         return $namaBaru;
     }

@@ -162,28 +162,37 @@ else if(isset($_POST['submitPatient'])) {
                 </div>
             </div>
             <?php } else if($_SESSION['status'] === "DOCTOR") { ?>
-            <div class="col-4   ">
+            <div class="col-4">
                 <img src="../assets/img/profile/<?= $data["foto_dokter"]?>" alt="Profile" width="250rem" class="mx-5">
+                <form action="edit.php" method="POST" enctype="multipart/form-data">
+                    <div class="input-group my-3">
+                        <input type="hidden" name="gambarLama" value="<?= $p["foto_dokter"]?>">
+                        <input type="hidden" class="form-control" id="name" value="<?= $p['nama_dokter']?>" name="name">
+                        <input type="hidden" class="form-control" id="email" aria-describedby="emailHelp" value="<?= $p['email_dokter']?>" name="email">
+                        <input type="hidden" class="form-control" id="telephone" value="<?= $p['telepon_dokter']?>" name="telephone">
+                        <input type="file" class="form-control" id="image" name="image">
+                        <button class="btn btn-outline-primary" type="submit" id="button-update" name="submitDoctor">Submit</button>
+                    </div>
+                </form>
             </div>
             <div class="col align-middle">
-                <div class="row mt-3">
-                    <div class="col lh-1">
-                    <span>Name</span>
-                    <span class="mx-3 fs-4"><b><?= $data["nama_dokter"]; ?></b></span>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col lh-1">
-                    <span>Telephone</span>
-                    <span class="mx-3 fs-4"><b><?= $data["telepon_dokter"]; ?></b></span>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col lh-1">
-                    <span>Email</span>
-                    <span class="mx-3 fs-4"><b><?= $data["email_dokter"]; ?></b></span>
-                    </div>
-                </div>
+                <table class="row mt-3">
+                    <tr class="col lh-1">
+                        <td>Name</td>
+                        <td class="col-1"></td>
+                        <td class="mx-3 fs-4"><b><?= $data["nama_dokter"]; ?></b></td>
+                    </tr>
+                    <tr class="col lh-1">
+                        <td>Telephone</td>
+                        <td></td>
+                        <td class="mx-3 fs-4"><b><?= $data["telepon_dokter"]; ?></b></td>
+                    </tr>
+                    <tr class="col lh-1">
+                        <td>Email</td>
+                        <td></td>
+                        <td class="mx-3 fs-4"><b><?= $data["email_dokter"]; ?></b></td>
+                    </tr>
+                </table>
                 <div class="section-title mt-5">
                     <h2>Change Password</h2>
                 </div>
@@ -206,26 +215,36 @@ else if(isset($_POST['submitPatient'])) {
             <?php } else if($_SESSION['status'] === "USER") { ?>
             <div class="col-4   ">
                 <img src="../assets/img/profile/<?= $data["foto_pasien"]?>" alt="Profile" width="250rem" class="mx-5">
+                <form action="edit.php" method="POST" enctype="multipart/form-data">
+                    <div class="input-group my-3">
+                        <input type="hidden" name="gambarLama" value="<?= $data["foto_pasien"]?>">
+                        <input type="hidden" name="id" value="<?= $data['id_pasien']?>">
+                            <input type="hidden" class="form-control" id="name" value="<?= $data['nama_pasien']?>" name="name">
+                            <input type="hidden" class="form-control" id="email" aria-describedby="emailHelp" value="<?= $data['email_pasien']?>" name="email">
+                            <input type="hidden" class="form-control" id="telephone" value="<?= $data['telepon_pasien']?>" name="telephone">
+                        <input type="file" class="form-control" id="image" name="image">
+                        <button class="btn btn-outline-primary" type="submit" id="button-update" name="submitPatient">Submit</button>
+                    </div>
+                </form>
             </div>
             <div class="col align-middle">
-                <div class="row mt-3">
-                    <div class="col lh-1">
-                    <span>Name</span>
-                    <span class="mx-3 fs-4"><b><?= $data["nama_pasien"]; ?></b></span>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col lh-1">
-                    <span>Telephone</span>
-                    <span class="mx-3 fs-4"><b><?= $data["telepon_pasien"]; ?></b></span>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col lh-1">
-                    <span>Email</span>
-                    <span class="mx-3 fs-4"><b><?= $data["email_pasien"]; ?></b></span>
-                    </div>
-                </div>
+                <table class="row mt-3">
+                    <tr class="col lh-1">
+                        <td>Name</td>
+                        <td class="col-1"> </td>
+                        <td class="mx-3 fs-4"><b><?= $data["nama_pasien"]; ?></b></td>
+                    </tr>
+                    <tr class="col lh-1">
+                        <td>Telephone</td>
+                        <td> </td>
+                        <td class="mx-3 fs-4"><b><?= $data["telepon_pasien"]; ?></b></td>
+                    </tr>
+                    <tr class="col lh-1">
+                        <td>Email</td>
+                        <td> </td>
+                        <td class="mx-3 fs-4"><b><?= $data["email_pasien"]; ?></b></td>
+                    </tr>
+                </table>
                 <div class="section-title mt-5">
                     <h2>Change Password</h2>
                 </div>
