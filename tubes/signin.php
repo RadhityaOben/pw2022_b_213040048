@@ -22,7 +22,7 @@
         $_SESSION['status'] = "SUPER ADMIN";
         $_SESSION['username'] = $row['username'];
         $_SESSION['id'] = $row['id'];
-        header("Location: php/adminlist.php");
+        header("Location: php/history.php");
         exit;
       }
     }

@@ -45,6 +45,12 @@
     
     function hapusPasien($id) {
         $connect = connect();
+
+        $pasien = query("SELECT * FROM pasien WHERE id_pasien = $id")[0];
+
+        if($pasien['foto_pasien'] !== 'nophoto.png') {
+            unlink('../assets/img/profile/' . $pasien['foto_pasien']);
+        }
         
         mysqli_query($connect, "DELETE FROM konsultasi WHERE id_pasien = $id") or die(mysqli_error($connect));
         mysqli_query($connect, "DELETE FROM pasien WHERE id_pasien = $id") or die(mysqli_error($connect));
@@ -64,6 +70,12 @@
             $gambar = $gambarLama;
         } else {
             $gambar = upload();
+
+            $pasien = query("SELECT * FROM pasien WHERE id_pasien = $id")[0];
+
+            if($pasien['foto_pasien'] !== 'nophoto.png') {
+            unlink('../assets/img/profile/' . $pasien['foto_pasien']);
+        }
         }
         
         $query = "UPDATE pasien SET nama_pasien = '$nama', email_pasien = '$email', telepon_pasien = '$telepon', foto_pasien = '$gambar' WHERE id_pasien = $id";
@@ -121,6 +133,12 @@
     
     function hapusDokter($id) {
         $connect = connect();
+
+        $dokter = query("SELECT * FROM dokter WHERE id_dokter = $id")[0];
+
+        if($dokter['foto_dokter'] !== 'nophoto.png') {
+            unlink('../assets/img/profile/' . $dokter['foto_dokter']);
+        }
         
         mysqli_query($connect, "DELETE FROM konsultasi WHERE id_dokter = $id") or die(mysqli_error($connect));
         mysqli_query($connect, "DELETE FROM dokter WHERE id_dokter = $id") or die(mysqli_error($connect));
@@ -140,6 +158,12 @@
             $gambar = $gambarLama;
         } else {
             $gambar = upload();
+            
+            $dokter = query("SELECT * FROM dokter WHERE id_dokter = $id")[0];
+
+            if($dokter['foto_dokter'] !== 'nophoto.png') {
+                unlink('../assets/img/profile/' . $dokter['foto_dokter']);
+            }
         }
         
         $query = "UPDATE dokter SET nama_dokter = '$nama', email_dokter = '$email', telepon_dokter = '$telepon', foto_dokter = '$gambar' WHERE id_dokter = $id";

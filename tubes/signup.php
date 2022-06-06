@@ -22,7 +22,7 @@
         if(tambahPasien($_POST) > 0) {
           echo "<script>
                   alert('Sign Up success!');
-                  document.location.href = 'index.php';
+                  document.location.href = 'signin.php';
                   </script>";
         }
     }

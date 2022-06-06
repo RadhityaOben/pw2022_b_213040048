@@ -1,36 +1,50 @@
 <?php 
+session_start();
     require '../db/functions.php';
     if(isset($_POST['submitPatient'])){
       $idPasien = $_POST['id'];
-      
+
+      if($_SESSION['status'] === "USER") {
+        $location = 'profile.php';
+      }
+      else {
+        $location = 'patientlist.php';
+      }
         // Pasien
         if(editPasien($idPasien, $_POST) > 0) {
             echo "<script>
                     alert('Data Edited Successfully!');
-                    document.location.href = 'patientlist.php';
+                    document.location.href = '" . $location . "';
                   </script>";
         }
         else {
           echo "<script>
                   alert('Failed to Edit!');
-                  document.location.href = 'patientlist.php';
+                  document.location.href = '" . $location . "';
                 </script>";
         }
     }
     else if(isset($_POST['submitDoctor'])){
       $idDokter = $_POST['id'];
+
+      if($_SESSION['status'] === "DOCTOR") {
+        $location = 'profile.php';
+      }
+      else {
+        $location = 'doctorlist.php';
+      }
       
-        // Pasien
+        // Dokter
         if(editDokter($idDokter, $_POST) > 0) {
             echo "<script>
                     alert('Data Edited Successfully!');
-                    document.location.href = 'doctorlist.php';
+                    document.location.href = '" . $location . "';
                   </script>";
         }
         else {
           echo "<script>
                   alert('Failed to Edit!');
-                  document.location.href = 'doctorlist.php';
+                  document.location.href = '" . $location . "';
                 </script>";
         }
     }

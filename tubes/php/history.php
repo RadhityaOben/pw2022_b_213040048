@@ -12,7 +12,21 @@ else if($_SESSION['status'] === "DOCTOR") {
     $history = query("SELECT * FROM konsultasi WHERE id_dokter = $_SESSION[id]");
 }
 else {
+  if(isset($_GET['cat'])) {
+    $kategori = $_GET['cat'];
+    if($kategori === "id_pasien") {
+      $history = query("SELECT k.*, p.id_pasien, p.nama_pasien FROM konsultasi k NATURAL JOIN pasien p ORDER BY p.nama_pasien ASC");
+    }
+    else if ($kategori === "id_dokter") {
+      $history = query("SELECT k.*, d.id_dokter, d.nama_dokter FROM konsultasi k NATURAL JOIN dokter d ORDER BY d.nama_dokter ASC");
+    }
+    else {
+      $history = query("SELECT * FROM konsultasi ORDER BY $kategori ASC");
+    }
+  }
+  else {
     $history = query("SELECT * FROM konsultasi");
+  }
 }
 
 // History Search
@@ -75,6 +89,32 @@ $no = 1;
           <div class="col">
             <?php if($_SESSION['status'] === "ADMIN" || $_SESSION['status'] === "SUPER ADMIN") { ?>
             <a href="print.php" target="_blank"><button class="btn btn-info text-white rounded-pill px-4">Print</button></a>
+          </div>
+
+          <div class="col">
+          </div>
+
+          <div class="col-3">
+          </div>
+
+          <div class="col">
+            <div class="input-group mb-3 order" id="order">
+              <button class="btn btn-outline-success active asc" id="asc" onclick="order('asc')" id="order" value="ASC">ASC</button>
+              <button class="btn btn-outline-success desc" id="desc" onclick="order('desc')" id="order" value="DESC">DESC</button>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="input-group mb-3">
+              <select name="category" id="category" class="form-control form-select" onchange="window.location.href=this.value">
+                <option value="">Category</option>
+                <option value="history.php?cat=keluhan">Complaint</option>
+                <option value="history.php?cat=id_pasien">Patient</option>
+                <option value="history.php?cat=id_dokter">Doctor</option>
+                <option value="history.php?cat=tgl_konsultasi">Date</option>
+                <option value="history.php?cat=media_konsultasi">Media</option>
+              </select>
+              <a href="history.php" class="btn btn-outline-warning" id="button-search" name="submit">Reset</a>
+            </div>
             <?php } ?>
           </div>
           <div class="col-3">
@@ -89,7 +129,7 @@ $no = 1;
 
         <div class="row">
           <div class="table-responsive-sm table-history" id="history-ajax">
-            <table class="table table-striped table-borderless">
+            <table class="table table-striped table-borderless" id="table-history">
               <thead class="table-primary text-secondary">
                 <th class="text-center col-1">No</th>
                 <th>Complaint</th>

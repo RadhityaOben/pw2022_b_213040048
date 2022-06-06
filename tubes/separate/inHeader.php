@@ -26,7 +26,7 @@
           <?php if(isset($_SESSION['login'])) {?>
             <li class="dropdown"><a href="#"><span>Hello <b><?= strtoupper($_SESSION['username']); ?></b></span></a>
             <ul>
-              <li><a href="php/profile.php">Edit your profile</a></li>
+              <li><a href="php/profile.php">Profile</a></li>
               <li><a href="php/history.php">Appointment History</a></li>
               <li><a href="signout.php">Logout</a></li>
             </ul>

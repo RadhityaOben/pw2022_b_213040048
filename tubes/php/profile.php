@@ -163,7 +163,7 @@ else if(isset($_POST['submitPatient'])) {
             </div>
             <?php } else if($_SESSION['status'] === "DOCTOR") { ?>
             <div class="col-4">
-                <img src="../assets/img/profile/<?= $data["foto_dokter"]?>" alt="Profile" width="250rem" class="mx-5">
+                <img src="../assets/img/profile/<?= $data["foto_dokter"]?>" class="img-thumbnail mx-5" alt="Profile" width="300rem">
                 <form action="edit.php" method="POST" enctype="multipart/form-data">
                     <div class="input-group my-3">
                         <input type="hidden" name="gambarLama" value="<?= $p["foto_dokter"]?>">
@@ -214,7 +214,7 @@ else if(isset($_POST['submitPatient'])) {
             </div>
             <?php } else if($_SESSION['status'] === "USER") { ?>
             <div class="col-4   ">
-                <img src="../assets/img/profile/<?= $data["foto_pasien"]?>" alt="Profile" width="250rem" class="mx-5">
+                <img src="../assets/img/profile/<?= $data["foto_pasien"]?>" class="img-thumbnail mx-5" alt="Profile" width="300rem">
                 <form action="edit.php" method="POST" enctype="multipart/form-data">
                     <div class="input-group my-3">
                         <input type="hidden" name="gambarLama" value="<?= $data["foto_pasien"]?>">
