@@ -71,6 +71,10 @@
         } else {
             $gambar = upload();
 
+            if(!$gambar) {
+                return false;   
+            }
+
             $pasien = query("SELECT * FROM pasien WHERE id_pasien = $id")[0];
 
             if($pasien['foto_pasien'] !== 'nophoto.png') {
