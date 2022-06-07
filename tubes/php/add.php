@@ -21,7 +21,7 @@
         }
         else {
             echo "<script>
-                    alert('Password Doesn't Match!');
+                    alert('Password Does not Match!');
                   </script>";
         }
         echo "<script>
@@ -48,7 +48,7 @@
         }
         else {
             echo "<script>
-                    alert('Password Doesn't Match!');
+                    alert('Password Does not Match!');
                   </script>";
         }
         echo "<script>
@@ -75,7 +75,7 @@
         }
         else {
             echo "<script>
-                    alert('Password Doesn't Match!');
+                    alert('Password Does not Match!');
                   </script>";
         }
         echo "<script>

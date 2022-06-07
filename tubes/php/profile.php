@@ -28,11 +28,23 @@ if(isset($_POST['submitSAdmin'])) {
         document.location.href = 'profile.php';
       </script>";
     }
+    else {
+        echo "<script>
+        alert('Password does not match!');
+        document.location.href = 'profile.php';
+      </script>";
+    }
 }
 else if(isset($_POST['submitAdmin'])) {
     if(passwordAdmin($id, $_POST) > 0) {
         echo "<script>
         alert('Password Edited Successfully!');
+        document.location.href = 'profile.php';
+      </script>";
+    }
+    else {
+        echo "<script>
+        alert('Password does not match!');
         document.location.href = 'profile.php';
       </script>";
     }
@@ -44,11 +56,23 @@ else if(isset($_POST['submitDoctor'])) {
         document.location.href = 'profile.php';
       </script>";
     }
+    else {
+        echo "<script>
+        alert('Password does not match!');
+        document.location.href = 'profile.php';
+      </script>";
+    }
 }
 else if(isset($_POST['submitPatient'])) {
     if(passwordPasien($id, $_POST) > 0) {
         echo "<script>
         alert('Password Edited Successfully!');
+        document.location.href = 'profile.php';
+      </script>";
+    }
+    else {
+        echo "<script>
+        alert('Password does not match!');
         document.location.href = 'profile.php';
       </script>";
     }

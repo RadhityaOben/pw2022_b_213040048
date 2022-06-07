@@ -265,6 +265,9 @@
 
             return mysqli_affected_rows($connect);
         }
+        else {
+            return false;
+        }
     }
 
     function passwordAdmin($id, $edit) {
@@ -278,6 +281,9 @@
             mysqli_query($connect, $query) OR DIE(mysqli_error($connect));
 
             return mysqli_affected_rows($connect);
+        }
+        else {
+            return false;
         }
     }
 
@@ -293,6 +299,9 @@
 
             return mysqli_affected_rows($connect);
         }
+        else {
+            return false;
+        }
     }
 
     function passwordPasien($id, $edit) {
@@ -306,6 +315,9 @@
             mysqli_query($connect, $query) OR DIE(mysqli_error($connect));
 
             return mysqli_affected_rows($connect);
+        }
+        else {
+            return false;
         }
     }
 
