@@ -167,6 +167,7 @@ else if(isset($_POST['submitPatient'])) {
                 <form action="edit.php" method="POST" enctype="multipart/form-data">
                     <div class="input-group my-3">
                         <input type="hidden" name="gambarLama" value="<?= $p["foto_dokter"]?>">
+                        <input type="hidden" name="id" value="<?= $data['id_dokter']?>">
                         <input type="hidden" class="form-control" id="name" value="<?= $p['nama_dokter']?>" name="name">
                         <input type="hidden" class="form-control" id="email" aria-describedby="emailHelp" value="<?= $p['email_dokter']?>" name="email">
                         <input type="hidden" class="form-control" id="telephone" value="<?= $p['telepon_dokter']?>" name="telephone">

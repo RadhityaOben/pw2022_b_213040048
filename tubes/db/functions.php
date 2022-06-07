@@ -158,6 +158,10 @@
             $gambar = $gambarLama;
         } else {
             $gambar = upload();
+
+            if(!$gambar) {
+                return false;   
+            }
             
             $dokter = query("SELECT * FROM dokter WHERE id_dokter = $id")[0];
 
@@ -324,28 +328,25 @@
     function upload() {
         $nama_file = $_FILES['image']['name'];
         $ukuran_file = $_FILES['image']['size'];
-        $error = $_FILES['image']['error'];
         $tmpName = $_FILES['image']['tmp_name'];
+        $tipefile = pathinfo($nama_file, PATHINFO_EXTENSION);
+        $extGambar = ['jpg', 'jpeg', 'png'];
 
-        $extGambarV = ['jpg', 'jpeg', 'png'];
-        $extGambar = explode('.', $nama_file);
-        $extGambar = strtolower(end($extGambar));
-
-        if(!in_array($extGambar, $extGambarV)) {
+        if(!in_array(strtolower($tipefile), $extGambar)) {
             echo "<script>
-                alert ('Format file doesn't support!!');
+                alert ('Format file does not support!!');
             </script>";
             return false;
         }
         
-        if($ukuran_file > 5000000) {
+        if($ukuran_file > 3000000) {
             echo "<script>
                 alert ('File size is too big!!');
             </script>";
             return false;
         }
 
-        $namaBaru = uniqid() . '.' . $extGambar;
+        $namaBaru = uniqid() . '.' . $tipefile;
 
         if(!isset($_SESSION['login'])){
             move_uploaded_file($tmpName, 'assets/img/profile/'.$namaBaru);
