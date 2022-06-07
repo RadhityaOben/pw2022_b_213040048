@@ -171,7 +171,7 @@ else if(isset($_POST['submitPatient'])) {
                         <input type="hidden" class="form-control" id="name" value="<?= $p['nama_dokter']?>" name="name">
                         <input type="hidden" class="form-control" id="email" aria-describedby="emailHelp" value="<?= $p['email_dokter']?>" name="email">
                         <input type="hidden" class="form-control" id="telephone" value="<?= $p['telepon_dokter']?>" name="telephone">
-                        <input type="file" class="form-control" id="image" name="image">
+                        <input type="file" class="form-control" id="image" name="image" required>
                         <button class="btn btn-outline-primary" type="submit" id="button-update" name="submitDoctor">Submit</button>
                     </div>
                 </form>
@@ -223,7 +223,7 @@ else if(isset($_POST['submitPatient'])) {
                             <input type="hidden" class="form-control" id="name" value="<?= $data['nama_pasien']?>" name="name">
                             <input type="hidden" class="form-control" id="email" aria-describedby="emailHelp" value="<?= $data['email_pasien']?>" name="email">
                             <input type="hidden" class="form-control" id="telephone" value="<?= $data['telepon_pasien']?>" name="telephone">
-                        <input type="file" class="form-control" id="image" name="image">
+                        <input type="file" class="form-control" id="image" name="image" required>
                         <button class="btn btn-outline-primary" type="submit" id="button-update" name="submitPatient">Submit</button>
                     </div>
                 </form>
